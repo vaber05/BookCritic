@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BookCriticsApplication.Abstractions;
 using BookCriticsApplication.Modules.BookModules.Commands;
-using BookCriticsDomain.Models;
 using MediatR;
 
 namespace BookCriticsApplication.Modules.BookModules.CommandHandlers;

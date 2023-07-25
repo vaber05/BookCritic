@@ -1,4 +1,5 @@
-﻿using BookCriticsApplication.Abstractions;
+﻿using Azure.Storage.Blobs;
+using BookCriticsApplication.Abstractions;
 using BookCriticsApplication.Models.MLModelIO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.ML;
@@ -7,16 +8,15 @@ namespace BookCriticsApplication.Commons.MLModels;
 
 public class ReviewClassification : IMLModel<ModelInput, ModelOutput>
 {
-    private readonly MLContext context = new();
+    private readonly IConfiguration configuration;
     private readonly ITransformer model;
     private readonly PredictionEngine<ModelInput, ModelOutput> predictionEngine;
-    private readonly IConfiguration configuration;
+    private readonly MLContext context = new();
 
     public ReviewClassification(IConfiguration configuration)
     {
         this.configuration = configuration;
-        model = LoadModel();
-        predictionEngine = context.Model.CreatePredictionEngine<ModelInput, ModelOutput>(model);
+        predictionEngine = CreatePredictionEngine(out model);
     }
 
     public ModelOutput Predict(ModelInput inputModel)
@@ -24,10 +24,19 @@ public class ReviewClassification : IMLModel<ModelInput, ModelOutput>
         return predictionEngine.Predict(inputModel);
     }
 
-    private ITransformer LoadModel()
+    private async Task<ITransformer> LoadModel()
     {
-        var path = configuration["MLModelPaths:ReviewClassificationPath"];
+        var containerClient = new BlobContainerClient(configuration["StorageConnString"], configuration["MLModelStorageContainer"]);
+        var client = containerClient.GetBlobClient("Model.zip");
 
-        return context.Model.Load(path, out DataViewSchema inputSchema);
+        Stream modelData = await client.OpenReadAsync();
+
+        return context.Model.Load(modelData, out _);
+    }
+
+    private PredictionEngine<ModelInput, ModelOutput> CreatePredictionEngine(out ITransformer model)
+    {
+        model = LoadModel().Result;
+        return context.Model.CreatePredictionEngine<ModelInput, ModelOutput>(model);
     }
 }

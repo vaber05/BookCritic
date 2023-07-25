@@ -15,9 +15,7 @@ public class ChangeBookGenreHandler : IRequestHandler<ChangeBookGenre, bool>
 
     public async Task<bool> Handle(ChangeBookGenre request, CancellationToken cancellationToken)
     {
-        await repository.RemoveBookFromGenre(request.BookId, request.OldGenreId);
-
-        await repository.AddBookToGenre(request.BookId, request.NewGenreId);
+        await repository.UpdateBookGenres(request.BookId, request.OldBookGenre, request.NewBookGenre);
 
         return true;
     }

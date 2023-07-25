@@ -17,4 +17,6 @@ public interface IBookRepository
     Task AddBookToGenre(int bookId, int genreId);
 
     Task RemoveBookFromGenre(int bookId, int genreId);
+
+    Task UpdateBookGenres(int bookId, int oldGenreId, int newGenreId);
 }

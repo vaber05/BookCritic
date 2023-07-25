@@ -2,8 +2,8 @@ using BookCriticsAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.RegisterServices();
 builder.RegisterDependencyInjections();
+builder.RegisterServices();
 
 var app = builder.Build();
 

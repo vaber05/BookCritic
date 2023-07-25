@@ -1,5 +1,6 @@
 ﻿using BookCriticsAPI.Abstractions;
 using BookCriticsApplication.ModelDtos;
+using BookCriticsApplication.Models;
 using BookCriticsApplication.Modules.BookModules.Commands;
 using BookCriticsApplication.Modules.BookProfileModules.Queries;
 using MediatR;
@@ -68,14 +69,9 @@ public class BookEndpointDefinition : IEndpointDefinition
             return result ? Results.Ok() : Results.BadRequest();
         });
 
-        book.MapPatch("/ChangeGenre/{bookId}/{oldGenreId}/{newGenreId}", async (IMediator mediator, int bookId, int oldGenreId, int newGenreId) =>
+        book.MapPatch("/ChangeGenre/{bookId}/{oldGenreId}/{newGenreId}", async (IMediator mediator, int bookId,int oldGenreId, int newGenreId) =>
         {
-            var patchCommand = new ChangeBookGenre
-            {
-                BookId = bookId,
-                OldGenreId = oldGenreId,
-                NewGenreId = newGenreId
-            };
+            var patchCommand = new ChangeBookGenre { BookId = bookId, OldBookGenre = oldGenreId, NewBookGenre = newGenreId };
             var result = await mediator.Send(patchCommand);
 
             return result ? Results.Ok() : Results.BadRequest();

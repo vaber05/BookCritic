@@ -1,4 +1,5 @@
 ﻿using BookCriticsApplication.Abstractions;
+using BookCriticsApplication.Models;
 using BookCriticsApplication.Modules.ReviewModules.Commands;
 using BookCriticsDomain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -89,6 +90,25 @@ public class BookRepository : IBookRepository
         {
             BookId = bookId,
             GenreId = genreId
+        });
+
+        await context.SaveChangesAsync();
+    }
+
+    public async Task UpdateBookGenres(int bookId, int oldGenreId, int newGenreId)
+    {
+        context.ChangeTracker.Clear();
+
+        await context.BookInGenres.AddAsync(new BookInGenre
+        {
+            BookId = bookId,
+            GenreId = newGenreId
+        });
+
+        context.BookInGenres.Remove(new BookInGenre
+        {
+            BookId = bookId,
+            GenreId = oldGenreId
         });
 
         await context.SaveChangesAsync();
