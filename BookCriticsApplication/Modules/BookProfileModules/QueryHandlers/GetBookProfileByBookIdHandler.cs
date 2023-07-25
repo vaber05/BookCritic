@@ -5,7 +5,6 @@ using BookCriticsApplication.Models;
 using BookCriticsApplication.Modules.BookProfileModules.Queries;
 using BookCriticsDomain.Models;
 using MediatR;
-using System.Collections.Generic;
 
 namespace BookCriticsApplication.Modules.BookProfileModules.QueryHandlers;
 

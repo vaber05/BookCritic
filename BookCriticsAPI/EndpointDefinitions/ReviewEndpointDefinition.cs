@@ -1,10 +1,8 @@
 ﻿using BookCriticsAPI.Abstractions;
 using BookCriticsApplication.ModelDtos;
-using BookCriticsApplication.Models.MLModelIO;
 using BookCriticsApplication.Modules.ReviewModules.Commands;
 using BookCriticsApplication.Modules.ReviewModules.Queries;
 using MediatR;
-using Microsoft.Extensions.ML;
 
 namespace BookCriticsAPI.EndpointDefinitions;
 

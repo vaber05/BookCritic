@@ -1,6 +1,5 @@
 ﻿using BookCriticsAPI.Abstractions;
 using BookCriticsApplication.ModelDtos;
-using BookCriticsApplication.Models;
 using BookCriticsApplication.Modules.BookModules.Commands;
 using BookCriticsApplication.Modules.BookProfileModules.Queries;
 using MediatR;

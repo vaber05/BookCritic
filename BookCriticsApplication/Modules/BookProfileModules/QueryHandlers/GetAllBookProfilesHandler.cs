@@ -21,17 +21,7 @@ public class GetAllBookProfilesHandler : IRequestHandler<GetAllBookProfiles, Lis
 
     public async Task<List<BookProfile>> Handle(GetAllBookProfiles request, CancellationToken cancellationToken)
     {
-        var books = new List<Book>();
-
-        try
-        {
-            books = await repository.GetAllBooks();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ex.Message);
-        }
-
+        var books = await repository.GetAllBooks();
         var bookProfiles = new List<BookProfile>();
 
         foreach (var book in books)
@@ -51,7 +41,7 @@ public class GetAllBookProfilesHandler : IRequestHandler<GetAllBookProfiles, Lis
 
     private static float CalculateRatingAvarage(List<Rating> ratings)
     {
-        if(ratings.Count == 0)
+        if (ratings.Count == 0)
             return 0;
 
         float totalRatingValueSum = 0;

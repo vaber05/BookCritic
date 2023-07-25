@@ -1,7 +1,6 @@
 ﻿using BookCriticsApplication.Abstractions;
 using BookCriticsDomain.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
 
 namespace BookCriticsInfrastructure.Repositories;
 

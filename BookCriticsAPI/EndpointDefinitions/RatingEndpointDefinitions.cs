@@ -1,7 +1,6 @@
 ﻿using BookCriticsAPI.Abstractions;
 using BookCriticsApplication.Models;
 using BookCriticsApplication.Modules.RatingModules.Commands;
-using BookCriticsApplication.Modules.ReviewModules.Commands;
 using MediatR;
 
 namespace BookCriticsAPI.EndpointDefinitions;

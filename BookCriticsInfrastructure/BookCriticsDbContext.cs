@@ -30,7 +30,6 @@ public class BookCriticsDbContext : DbContext
 
     public DbSet<Role> Roles { get; set; }
 
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Entity<Genre>().HasData(Enum.GetValues(typeof(GenresEnum)).Cast<GenresEnum>().Select(e => new Genre

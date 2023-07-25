@@ -1,6 +1,4 @@
 ﻿using BookCriticsApplication.Abstractions;
-using BookCriticsApplication.Models;
-using BookCriticsApplication.Modules.ReviewModules.Commands;
 using BookCriticsDomain.Models;
 using Microsoft.EntityFrameworkCore;
 

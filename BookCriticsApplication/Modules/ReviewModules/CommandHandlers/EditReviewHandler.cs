@@ -1,8 +1,8 @@
 ﻿using BookCriticsApplication.Abstractions;
-using BookCriticsApplication.Modules.ReviewModules.Commands;
-using MediatR;
-using BookCriticsDomain.Models;
 using BookCriticsApplication.Models.MLModelIO;
+using BookCriticsApplication.Modules.ReviewModules.Commands;
+using BookCriticsDomain.Models;
+using MediatR;
 
 namespace BookCriticsApplication.Modules.ReviewModules.CommandHandlers;
 
